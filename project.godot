@@ -194,7 +194,7 @@ p1_camera_RL={
 
 [input_devices]
 
-virtual_controller/show_controller=true
+virtual_controller/ios/enable_controller=true
 pointing/emulate_touch_from_mouse=true
 
 [layer_names]
