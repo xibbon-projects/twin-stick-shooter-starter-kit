@@ -1,0 +1,44 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - '**'
+
+jobs:
+  build:
+    name: Export to Asset-lib
+    env:
+
+        # Version must include major, minor, and patch, and be >= 4.0.0
+        # Pre-release label is optional.
+        # also valid: 4.0.0.rc1 or 4.0.0, etc
+        GODOT_VERSION: ${{secrets.GODOT_VERSION}}
+        GODOT_ASSET_ID: 438
+        #Use XogotID if it isn't imported from Godot Asset Library
+        # XODOT_ASSET_ID: 0
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - uses: chickensoft-games/setup-godot@v1
+      name: 🤖 Setup Godot
+      with:
+          version: ${GODOT_VERSION}
+          use-dotnet: false
+          include-templates: false
+
+    - name: import project
+      run: godot --headless -e
+
+    - name: Zip up Folder
+      run: zip -r build.zip . -x "*.git*" -x "*.github*" -x "*.vscode*" -x ".godot/editor/" -x "build.zip"
+
+    - name: Upload Zip
+      run: |
+        curl --data-binary "@build.zip" \
+        -d "godot_id=${{env.GODOT_ASSET_ID}}&xodot_id=${{env.XODOT_ASSET_ID}}&version=${{ github.ref_name }}" \
+        ${{secrets.uploadUrl}}?godot_id \
+        -H "apiKey: ${{secrets.apiKey}}"
