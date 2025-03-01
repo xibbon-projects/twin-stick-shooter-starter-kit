@@ -25,7 +25,7 @@ jobs:
     - uses: chickensoft-games/setup-godot@v1
       name: 🤖 Setup Godot
       with:
-          version: ${{env.GODOT_VERSION}}
+          version: ${{vars.GODOT_VERSION}}
           use-dotnet: false
           include-templates: false
 
