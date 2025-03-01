@@ -13,7 +13,6 @@ jobs:
         # Version must include major, minor, and patch, and be >= 4.0.0
         # Pre-release label is optional.
         # also valid: 4.0.0.rc1 or 4.0.0, etc
-        GODOT_VERSION: ${{secrets.GODOT_VERSION}}
         GODOT_ASSET_ID: 438
         #Use XogotID if it isn't imported from Godot Asset Library
         # XODOT_ASSET_ID: 0
