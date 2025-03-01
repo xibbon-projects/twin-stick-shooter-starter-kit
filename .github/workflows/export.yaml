@@ -40,6 +40,6 @@ jobs:
         if curl --data-binary "@build.zip" \
             ${{secrets.uploadUrl}}?godot_id=${{env.GODOT_ASSET_ID}}&xodot_id=${{env.XODOT_ASSET_ID}}&version=${{ github.ref_name }}" \
             -H "apiKey: ${{secrets.apiKey}}" 
-        then echo "SUCCESS" 
-        else echo "FAILURE"
+        then echo "SUCCESS" \
+        else echo "FAILURE" \
         fi
