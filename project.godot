@@ -194,8 +194,8 @@ p1_camera_RL={
 
 [input_devices]
 
-virtual_controller/ios/enable_controller=true
 pointing/emulate_touch_from_mouse=true
+virtual_controller/ios/enable_controller=true
 
 [layer_names]
 
@@ -211,6 +211,8 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+textures/vram_compression/import_s3tc_bptc=true
+textures/vram_compression/import_etc2_astc=true
 lights_and_shadows/directional_shadow/soft_shadow_filter_quality=5
 global_illumination/voxel_gi/quality=1
 environment/ssao/quality=4
